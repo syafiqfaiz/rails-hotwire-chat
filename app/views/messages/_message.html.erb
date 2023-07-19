@@ -1,7 +1,7 @@
 <div id="<%= dom_id message %>">
 
   <p>
-    <strong>Body:</strong>
+    <strong> <%= message.created_at.strftime("%I:%M%p") %>:</strong>
     <%= message.body %>
   </p>
 

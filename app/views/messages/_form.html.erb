@@ -1,22 +1,24 @@
-<%= form_with(model: message, url: room_messages_path(@room)) do |form| %>
-  <% if message.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+<div data-controller="reset">
+  <%= form_with(model: message, url: room_messages_path(@room),
+    data: { action: 'turbo:submit-end->reset#reset'}) do |form| %>
+    <% if message.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
 
-      <ul>
-        <% message.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% message.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.text_field :body, data: {"reset-target":"output"} %>
+    </div>
+
+    <div>
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_field :body %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

@@ -26,6 +26,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
+        format.turbo_stream
         format.html { redirect_to room_url(@room), notice: "Message was successfully created." }
         format.json { render :show, status: :created, location: @message }
       else
