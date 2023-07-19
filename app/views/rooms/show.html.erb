@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @room %>
+
+<div>
+  <%= link_to "Edit this room", edit_room_path(@room) %> |
+  <%= link_to "Back to rooms", rooms_path %>
+
+  <%= button_to "Destroy this room", @room, method: :delete %>
+</div>
+
+<div class="messages">
+  <h1>Messages</h1>
+  <%= render @room.messages %>
+</div>
+
+<%= link_to "New message", new_room_message_path(@room) %>
